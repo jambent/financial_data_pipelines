@@ -1,0 +1,1 @@
+Beginnings of financial data pipelines project, using yahoo! finance
