@@ -14,3 +14,4 @@ serverless-output.yaml
 **/*pycache
 *coverage*
 venv/
+.terraform*
