@@ -12,13 +12,22 @@ ticker_list = [
     'GBP=X',
 ]
 
-df = pd.DataFrame(columns= ('Open','High','Low','Close','Volume','Dividends','Stock Splits','Currency Pair'))
+df = pd.DataFrame(
+    columns=(
+        'Open',
+        'High',
+        'Low',
+        'Close',
+        'Volume',
+        'Dividends',
+        'Stock Splits',
+        'Currency Pair'))
 
 for ticker in ticker_list:
     ticker_data = yf.Ticker(ticker)
     ticker_df = ticker_data.history(period='1d', interval='15m')
     filtered_ticker_df = ticker_df.loc[[target_time]]
-    
+
     ticker_components = ticker.split('=')
     currency_one = ''
     currency_two = ''
@@ -30,7 +39,7 @@ for ticker in ticker_list:
         currency_two = ticker_components[0][3:]
     currency_pair = currency_one + '/' + currency_two
     filtered_ticker_df['Currency Pair'] = currency_pair
-    
-    df= pd.concat([df,filtered_ticker_df])
+
+    df = pd.concat([df, filtered_ticker_df])
 
 print(df.head())
