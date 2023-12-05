@@ -22,7 +22,7 @@ resource "aws_s3_object" "yfinance_ingestion_code" {
 }
 
 
-/*
+
 ##############################################################################
 # Lambda layers                                                              #
 ##############################################################################
@@ -33,4 +33,3 @@ resource "aws_lambda_layer_version" "yfinance_layer" {
 
   compatible_runtimes = ["python3.11"]
 }
-*/

@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 from datetime import datetime as dt
 
-target_time = dt.fromisoformat('2023-11-28T16:30:00Z')
+target_time = dt.fromisoformat('2023-12-05T12:30:00Z')
 
 ticker_list = [
     'EURUSD=X',

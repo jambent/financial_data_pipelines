@@ -14,6 +14,7 @@ resource "aws_lambda_function" "yfinance_dataframe_to_parquet" {
   }
   layers = [
             "arn:aws:lambda:eu-west-2:336392948345:layer:AWSSDKPandas-Python311:4",
+            aws_lambda_layer_version.yfinance_layer.arn
         ]
 
 }
