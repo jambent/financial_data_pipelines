@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 from datetime import datetime as dt
 
-target_time = dt.fromisoformat('2023-12-05T12:30:00Z')
+target_time = dt.fromisoformat('2023-12-06T16:30:00Z')
 
 ticker_list = [
     'EURUSD=X',
@@ -42,4 +42,5 @@ for ticker in ticker_list:
 
     df = pd.concat([df, filtered_ticker_df])
 
+print(ticker_df.head())
 print(df.head())

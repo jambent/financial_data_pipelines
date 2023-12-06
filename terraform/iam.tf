@@ -31,13 +31,13 @@ resource "aws_iam_policy" "s3_policy" {
   policy      = data.aws_iam_policy_document.s3_document.json
 }
 
-resource "aws_iam_role" "lambda_df_to_parquet_role" {
-  name_prefix        = "role-${var.lambda_df_to_parquet_name}"
+resource "aws_iam_role" "yfinance_fx_lambda_df_to_parquet_role" {
+  name_prefix        = "role-${var.yfinance_fx_lambda_df_to_parquet_name}"
   assume_role_policy = data.aws_iam_policy_document.assume_role_document.json
 }
 
 
-resource "aws_iam_role_policy_attachment" "ingestion_s3_policy_attachment" {
-  role       = aws_iam_role.lambda_df_to_parquet_role.name
+resource "aws_iam_role_policy_attachment" "yfinance_fx_ingestion_s3_policy_attachment" {
+  role       = aws_iam_role.yfinance_fx_lambda_df_to_parquet_role.name
   policy_arn = aws_iam_policy.s3_policy.arn
 }

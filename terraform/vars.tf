@@ -1,4 +1,4 @@
-variable "lambda_df_to_parquet_name" {
+variable "yfinance_fx_lambda_df_to_parquet_name" {
     type = string
-    default = "yfinance_df_to_parquet"
+    default = "yfinance_fx_df_to_parquet"
 }

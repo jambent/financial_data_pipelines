@@ -15,9 +15,9 @@ resource "aws_s3_bucket" "landing_bucket" {
 ##############################################################################
 # Lambda code                                                             #
 ##############################################################################
-resource "aws_s3_object" "yfinance_ingestion_code" {
-  key    = "yfinance_ingestion_function.zip"
-  source = "${path.module}/../yfinance_ingestion_function.zip"
+resource "aws_s3_object" "yfinance_fx_ingestion_code" {
+  key    = "yfinance_fx_ingestion_function.zip"
+  source = "${path.module}/../yfinance_fx_ingestion_function.zip"
   bucket = aws_s3_bucket.code_bucket.id
 }
 
