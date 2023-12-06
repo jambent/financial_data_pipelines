@@ -1,11 +1,9 @@
 import pytest
 import pandas as pd
-from datetime import datetime as dt
 import copy
-import yfinance as yf
 
 from src.load_fx_data import (generate_empty_dataframe_for_fx_data,
-                              load_fx_data,find_target_batch_time)
+                              load_fx_data, find_target_batch_time)
 
 TICKER_LIST = [
     'EURUSD=X',
@@ -45,7 +43,7 @@ def test_that_type_error_raised_if_df_columns_not_passed_as_list():
 
 def test_that_exception_raised_if_empty_df_not_generated():
     with pytest.raises(Exception):
-        generate_empty_dataframe_for_fx_data(DATAFRAME_COLUMNS,2)
+        generate_empty_dataframe_for_fx_data(DATAFRAME_COLUMNS, 2)
 
 
 def test_that_dataframe_returned_from_load_fx_data():
@@ -66,12 +64,13 @@ def test_that_type_error_raised_if_ticker_list_not_passed_as_list():
     with pytest.raises(TypeError, match=r'ticker_list must be a list'):
         load_fx_data({'EURUSD=X': 'EURUSD=X', 'GBPUSD=X': 'GBPUSD=X'})
 
+
 def test_that_exception_raised_if_fx_df_not_returned():
     with pytest.raises(Exception):
-        load_fx_data(TICKER_LIST,2)
+        load_fx_data(TICKER_LIST, 2)
 
 
 def test_that_target_batch_time_returned_as_string():
     result = find_target_batch_time()
 
-    assert isinstance(result,str)
+    assert isinstance(result, str)
