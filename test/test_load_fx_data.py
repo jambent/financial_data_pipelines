@@ -47,9 +47,10 @@ def test_that_exception_raised_if_empty_df_not_generated():
 
 
 def test_that_dataframe_returned_from_load_fx_data():
-    result = load_fx_data(TICKER_LIST)
+    result, key = load_fx_data(TICKER_LIST)
 
     assert isinstance(result, pd.DataFrame)
+    assert isinstance(key, str)
 
 
 def test_that_ticker_list_not_mutated():
@@ -71,6 +72,7 @@ def test_that_exception_raised_if_fx_df_not_returned():
 
 
 def test_that_target_batch_time_returned_as_string():
-    result = find_target_batch_time()
+    result, key = find_target_batch_time()
 
     assert isinstance(result, str)
+    assert isinstance(key, str)

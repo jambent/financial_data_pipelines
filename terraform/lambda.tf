@@ -3,9 +3,9 @@ resource "aws_lambda_function" "yfinance_fx_dataframe_to_parquet" {
   role          = aws_iam_role.lambda_fx_df_to_parquet_role.arn
   s3_bucket     = aws_s3_bucket.code_bucket.id
   s3_key        = aws_s3_object.yfinance_fx_ingestion_code.key
-  handler       = "prototype_data_ingestion.lambda_handler"
+  handler       = "yfinance_fx_ingestion.lambda_handler"
   runtime       = "python3.11"
-  timeout       = 600
+  timeout       = 60
   environment {
     variables = {
       "S3_LANDING_ID"          = aws_s3_bucket.landing_bucket.id,

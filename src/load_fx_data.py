@@ -37,6 +37,7 @@ def load_fx_data(ticker_list):
         ticker_list: target yfinance FX tickers
     Returns:
         DataFrame containing FX data from latest batch
+        file_key to be used when writing to s3 bucket
     Raises:
         TypeError if ticker_list is not a list
     """
@@ -46,7 +47,7 @@ def load_fx_data(ticker_list):
 
     df = generate_empty_dataframe_for_fx_data(DATAFRAME_COLUMNS)
 
-    target_batch_time = find_target_batch_time()
+    target_batch_time, file_key = find_target_batch_time()
 
     for ticker in ticker_list:
         ticker_data = yf.Ticker(ticker)
@@ -55,7 +56,7 @@ def load_fx_data(ticker_list):
 
         df = pd.concat([df, filtered_ticker_df])
 
-    return df
+    return df, file_key
 
 
 def generate_empty_dataframe_for_fx_data(dataframe_columns):
@@ -84,7 +85,8 @@ def find_target_batch_time():
 
     Returns:
         String of required batch time, to match index format
-        of yfinance DataFrame
+            of yfinance DataFrame
+        file_key to be used when writing to s3 bucket
     """
     time_now = dt.now()
     date_today = str(time_now.date())
@@ -101,6 +103,13 @@ def find_target_batch_time():
 
     batch_delta_record = dict(zip(time_deltas, batch_time_dt_objects_today))
     min_batch_delta = min(batch_delta_record)
-    target_batch_string = str(batch_delta_record[min_batch_delta]) + '+00:00'
 
-    return target_batch_string
+    target_batch_dt_object = batch_delta_record[min_batch_delta]
+    target_batch_string = str(target_batch_dt_object) + '+00:00'
+    print(batch_delta_record[min_batch_delta])
+    print(batch_delta_record[min_batch_delta].hour)
+    print(batch_delta_record[min_batch_delta].minute)
+    file_key = (date_today + '/' + str(target_batch_dt_object.hour)
+                + str(target_batch_dt_object.minute) + '/' + 'yfinance_FX')
+
+    return target_batch_string, file_key
