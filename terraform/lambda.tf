@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "yfinance_fx_dataframe_to_parquet" {
-  function_name = var.lambda_fx_df_to_parquet_name
-  role          = aws_iam_role.lambda_fx_df_to_parquet_role.arn
+  function_name = var.yfinance_fx_lambda_df_to_parquet_name
+  role          = aws_iam_role.yfinance_fx_lambda_df_to_parquet_role.arn
   s3_bucket     = aws_s3_bucket.code_bucket.id
   s3_key        = aws_s3_object.yfinance_fx_ingestion_code.key
   handler       = "yfinance_fx_ingestion.lambda_handler"
