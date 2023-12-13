@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "yfinance_fx_ingestion_lambda_0600_invocation_rule" {
   name                = "yfinance-fx-ingestion-lambda-0600-invocation-event-rule"
   description         = "triggers yfinance fx ingestion lambda according to specified schedule"
-  schedule_expression = "cron(06 20 ? * MON-FRI *)"
+  schedule_expression = "cron(20 06 ? * MON-FRI *)"
 }
 
 resource "aws_cloudwatch_event_target" "yfinance_fx_ingestion_lambda_0600_target" {

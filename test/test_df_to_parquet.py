@@ -5,7 +5,7 @@ import awswrangler as wr
 from moto import mock_s3
 from unittest.mock import patch
 
-from src.df_to_parquet import dataframe_to_parquet
+from src.yfinance_fx_ingestion.df_to_parquet import dataframe_to_parquet
 
 
 @mock_s3
