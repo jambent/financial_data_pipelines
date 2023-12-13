@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 data "archive_file" "df_to_parquet_lambda" {
   type        = "zip"
   source_dir = "${path.module}/../src/yfinance_fx_ingestion"

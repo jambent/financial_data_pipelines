@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 import copy
 
-from src.load_fx_data import (generate_empty_dataframe_for_fx_data,
+from src.yfinance_fx_ingestion.load_fx_data import (generate_empty_dataframe_for_fx_data,
                               load_fx_data, find_target_batch_time)
 
 TICKER_LIST = [

@@ -18,3 +18,28 @@ resource "aws_lambda_function" "yfinance_fx_dataframe_to_parquet" {
         ]
 
 }
+
+resource "aws_lambda_permission" "allow_0600_events" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.yfinance_fx_dataframe_to_parquet.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.yfinance_fx_ingestion_lambda_0600_invocation_rule.arn
+  source_account = data.aws_caller_identity.current.account_id
+}
+
+resource "aws_lambda_permission" "allow_1630_events" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.yfinance_fx_dataframe_to_parquet.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.yfinance_fx_ingestion_lambda_1630_invocation_rule.arn
+  source_account = data.aws_caller_identity.current.account_id
+}
+
+resource "aws_lambda_permission" "allow_2000_events" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.yfinance_fx_dataframe_to_parquet.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.yfinance_fx_ingestion_lambda_2000_invocation_rule.arn
+  source_account = data.aws_caller_identity.current.account_id
+}
+

@@ -5,7 +5,7 @@ import awswrangler as wr
 from moto import mock_s3
 from unittest.mock import patch
 
-from src.df_to_parquet import dataframe_to_parquet
+from src.yfinance_fx_ingestion.df_to_parquet import dataframe_to_parquet
 
 
 @mock_s3
@@ -40,7 +40,7 @@ def test_that_type_error_thrown_for_non_dataframe_input():
 
 
 @mock_s3
-@patch('src.df_to_parquet.dataframe_to_parquet',
+@patch('src.yfinance_fx_ingestion.df_to_parquet.dataframe_to_parquet',
        side_effect=(Exception
                     ('Writing of parquet file to landing bucket failed')))
 def test_that_exception_thrown_for_invalid_arguments(
