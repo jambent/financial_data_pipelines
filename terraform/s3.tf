@@ -12,6 +12,17 @@ resource "aws_s3_bucket" "landing_bucket" {
   force_destroy = true
 }
 
+
+resource "aws_s3_bucket_notification" "FX_bucket_notification" {
+  bucket = aws_s3_bucket.landing_bucket.id
+
+  queue {
+    queue_arn     = aws_sqs_queue.FX_queue.arn
+    events        = ["s3:ObjectCreated:*"]
+    filter_suffix = ".log"
+  }
+}
+
 ##############################################################################
 # Lambda code                                                             #
 ##############################################################################
