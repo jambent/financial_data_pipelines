@@ -18,7 +18,7 @@ DATAFRAME_COLUMNS = [
     'Volume',
     'Dividends',
     'Stock Splits',
-    'Ticker']
+    'Currency Pair']
 
 
 BATCH_TIMES = {
@@ -48,7 +48,7 @@ def load_fx_data(ticker_list):
     df = generate_empty_dataframe_for_fx_data(DATAFRAME_COLUMNS)
 
     target_batch_time, file_key = find_target_batch_time()
-    
+
     for ticker in ticker_list:
         ticker_data = yf.Ticker(ticker)
         ticker_df = ticker_data.history(period='1d', interval='30m')
@@ -103,10 +103,10 @@ def find_target_batch_time():
 
     batch_delta_record = dict(zip(time_deltas, batch_time_dt_objects_today))
     min_batch_delta = min(batch_delta_record)
-    
+
     target_batch_dt_object = batch_delta_record[min_batch_delta]
     target_batch_string = str(target_batch_dt_object) + '+00:00'
-    
+
     hour_for_file_key = str(target_batch_dt_object.hour)
     if len(hour_for_file_key) == 1:
         hour_for_file_key = '0' + hour_for_file_key

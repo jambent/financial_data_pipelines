@@ -16,3 +16,6 @@ serverless-output.yaml
 venv/
 .terraform*
 __pycache__
+dags/logs
+dags/airflow*
+dags/webserver*
