@@ -29,6 +29,3 @@ def load_parquet(bucket, key):
         print(f'Parquet file s3://{bucket}/{key} could not be read: {e}')
 
 
-# if __name__ == '__main__':
-#     df = load_parquet(bucket,key)
-#     print(df.head())

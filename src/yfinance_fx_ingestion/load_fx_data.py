@@ -18,7 +18,7 @@ DATAFRAME_COLUMNS = [
     'Volume',
     'Dividends',
     'Stock Splits',
-    'Currency Pair']
+    'Ticker']
 
 
 BATCH_TIMES = {
@@ -53,7 +53,8 @@ def load_fx_data(ticker_list):
         ticker_data = yf.Ticker(ticker)
         ticker_df = ticker_data.history(period='1d', interval='30m')
         filtered_ticker_df = ticker_df.loc[[target_batch_time]]
-
+        filtered_ticker_df['Ticker'] = ticker
+        
         df = pd.concat([df, filtered_ticker_df])
 
     return df, file_key

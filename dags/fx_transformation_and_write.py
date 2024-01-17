@@ -15,7 +15,7 @@ default_args = {
 }
 
 dg = DAG('FX_s3_sensor',
-          schedule_interval='@daily',
+          schedule_interval='/10 * * * *',
           default_args=default_args,
           catchup=False
           )
@@ -51,7 +51,7 @@ def processing_func(**kwargs):
 
 
 func_task = PythonOperator(
-    task_id='a_task_using_found_file',
+    task_id='a_task_using_fx_file',
     python_callable=processing_func,
     dag=dg)
 

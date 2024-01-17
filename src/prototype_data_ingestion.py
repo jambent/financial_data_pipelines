@@ -39,6 +39,7 @@ for ticker in ticker_list:
         currency_two = ticker_components[0][3:]
     currency_pair = currency_one + '/' + currency_two
     filtered_ticker_df['Currency Pair'] = currency_pair
+    filtered_ticker_df['Ticker'] = ticker
 
     df = pd.concat([df, filtered_ticker_df])
 

@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "yfinance-ingestion-backend"
+    bucket = "yfinance-ingest-backend"
     key    = "application.tfstate"
     region = "eu-west-2"
   }
